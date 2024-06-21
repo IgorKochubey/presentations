@@ -1,0 +1,55 @@
+### get all
+GET http://localhost:8080/api/books/
+Content-Type: application/json
+
+### get by ID
+GET http://localhost:8080/api/books/1
+Content-Type: application/json
+
+
+### Create
+POST http://localhost:8080/api/books
+Content-Type: application/json
+
+{
+  "title": "t8",
+  "description": "bla bla bla8"
+}
+
+### Del
+DELETE http://localhost:8080/api/books/53
+Content-Type: application/json
+
+
+###################
+
+### get all
+GET http://localhost:8080/api/authors/
+Content-Type: application/json
+
+### get by ID
+GET http://localhost:8080/api/authors/1
+Content-Type: application/json
+
+
+### Create
+POST http://localhost:8080/api/authors
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "t35",
+  "email": "too@mail.com"
+}
+
+### Del
+DELETE http://localhost:8080/api/authors/53
+Content-Type: application/json
+
+### Add book to author
+POST http://localhost:8080/api/authors/1/books/2
+Content-Type: application/json
+
+#######
+
+
