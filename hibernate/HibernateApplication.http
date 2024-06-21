@@ -38,18 +38,18 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "t35",
+  "idAuthor": 1,
+  "name": "t39",
   "email": "too@mail.com"
 }
 
 ### Del
-DELETE http://localhost:8080/api/authors/53
+DELETE http://localhost:8080/api/authors/8
 Content-Type: application/json
 
 ### Add book to author
-POST http://localhost:8080/api/authors/1/books/2
+POST http://localhost:8080/api/authors/7/books/3
 Content-Type: application/json
-
 #######
 
 

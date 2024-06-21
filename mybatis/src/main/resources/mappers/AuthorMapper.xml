@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.mybatis.dao.AuthorMapper">
+
+    <resultMap id="authorResultMap" type="org.example.mybatis.entity.Author">
+        <id property="idAuthor" column="id_author"/>
+        <result property="idAuthor" column="id_author" />
+        <result property="email" column="email" />
+        <result property="name" column="name" />
+        <collection property="books" column="id_book" ofType="org.example.mybatis.entity.Book"
+            javaType="ArrayList"
+            resultMap="org.example.mybatis.dao.BookMapper.bookResultMap"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="authorResultMap">
+        SELECT
+            author.id_author,
+            email,
+            name,
+            book.id_book,
+            description,
+            title
+        FROM author
+                 LEFT JOIN author_book ON (author_book.id_author = author.id_author)
+                 LEFT JOIN book ON (author_book.id_book = book.id_book)
+    </select>
+
+    <select id="findById" resultMap="authorResultMap">
+        SELECT
+            author.id_author,
+            email,
+            name,
+            book.id_book,
+            description,
+            title
+        FROM author
+                 LEFT JOIN author_book ON (author_book.id_author = author.id_author)
+                 LEFT JOIN book ON (author_book.id_book = book.id_book)
+        WHERE author.id_author = #{authorId}
+    </select>
+
+    <delete id="deleteById">
+        DELETE
+        FROM author
+        WHERE id_author = #{authorId}
+    </delete>
+
+    <insert id="create" parameterType="org.example.mybatis.entity.Author" useGeneratedKeys="true">
+        INSERT
+        INTO author (
+            name,
+            email
+        )
+        VALUES (
+            #{name},
+            #{email}
+        )
+    </insert>
+
+    <update id="update" parameterType="org.example.mybatis.entity.Author"  >
+        UPDATE author
+        <set>
+            name = #{name},
+            email = #{email}
+        </set>
+        WHERE id_author = #{idAuthor}
+    </update>
+
+    <insert id="addBookToAuthor">
+        INSERT
+        INTO author_book (
+            id_book,
+            id_author
+        )
+        VALUES (
+            #{bookId},
+            #{authorId}
+        )
+    </insert>
+
+</mapper>

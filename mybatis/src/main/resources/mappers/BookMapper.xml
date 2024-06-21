@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.mybatis.dao.BookMapper">
+
+    <resultMap id="bookResultMap" type="org.example.mybatis.entity.Book">
+        <id property="idBook" column="id_book"/>
+        <result property="idBook" column="id_book" />
+        <result property="description" column="description" />
+        <result property="title" column="title" />
+    </resultMap>
+
+    <select id="findAll" resultType="org.example.mybatis.entity.Book">
+        SELECT
+            id_book as "idBook",
+            description,
+            title
+        FROM boook
+    </select>
+
+    <select id="findById" resultType="org.example.mybatis.entity.Book">
+        SELECT
+            id_book as "idBook",
+            description,
+            title
+        FROM book
+        WHERE id_book = #{bookId}
+    </select>
+
+    <delete id="deleteById">
+        DELETE
+        FROM book
+        WHERE id_book = #{bookId}
+    </delete>
+
+    <insert id="create" parameterType="org.example.mybatis.entity.Book" useGeneratedKeys="true">
+        INSERT
+        INTO book (
+            description,
+            title
+        )
+        VALUES (
+            #{description},
+            #{title}
+        )
+    </insert>
+
+    <update id="update" parameterType="org.example.mybatis.entity.Book"  >
+        UPDATE book
+        <set>
+            description = #{name},
+            title = #{title}
+        </set>
+        WHERE id_book = #{idBook}
+    </update>
+
+
+
+</mapper>
